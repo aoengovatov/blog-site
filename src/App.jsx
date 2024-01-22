@@ -8,6 +8,7 @@ const Div = styled.div`
 export const App = () => {
     return (
         <>
+            <i className="fa fa-comment-o"></i>
             <Div>123</Div>
         </>
     );
