@@ -1,3 +1,4 @@
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Icon } from "../../../../components";
 
@@ -18,15 +19,24 @@ const Botton = styled.button`
 `;
 
 const ControlPanelContainer = ({ className }) => {
+    const navigate = useNavigate();
     return (
         <div className={className}>
             <RightAligned>
-                <Botton>Войти</Botton>
+                <Link to="/login">
+                    <Botton>Войти</Botton>
+                </Link>
             </RightAligned>
             <RightAligned>
-                <Icon id="fa-backward" margin="5px 0 0 0" />
-                <Icon id="fa-file-text-o" margin="5px 0 0 15px" />
-                <Icon id="fa-users" margin="5px 0 0 15px" />
+                <div onClick={() => navigate(-1)}>
+                    <Icon id="fa-backward" margin="5px 0 0 0" />
+                </div>
+                <Link to="/post">
+                    <Icon id="fa-file-text-o" margin="5px 0 0 15px" />
+                </Link>
+                <Link to="/users">
+                    <Icon id="fa-users" margin="5px 0 0 15px" />
+                </Link>
             </RightAligned>
         </div>
     );

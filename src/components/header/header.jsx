@@ -22,6 +22,7 @@ const HeaderContainer = ({ className }) => (
 export const Header = styled(HeaderContainer)`
     display: flex;
     justify-content: space-between;
+    align-items: center;
     position: fixed;
     width: 1000px;
     top: 0;
