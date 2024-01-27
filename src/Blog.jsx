@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import styled from "styled-components";
 import { Header, Footer } from "./components";
 import { Authrization } from "./pages";
+import styled from "styled-components";
 
 const AppColumn = styled.div`
     display: flex;
