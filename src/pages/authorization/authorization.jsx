@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Link } from "react-router-dom";
 import { server } from "../../bff";
 import { useState } from "react";
-import { Input, Button } from "../../components";
+import { Input, Button, H2 } from "../../components";
 import styled from "styled-components";
 
 const authFormShema = yup.object().shape({
@@ -37,12 +38,12 @@ const AuthorizationContainer = ({ className }) => {
         resolver: yupResolver(authFormShema),
     });
 
-    const [serverError, setServerError] = useState();
+    const [serverError, setServerError] = useState(null);
 
     const onSubmit = ({ login, password }) => {
         server.authorize(login, password).then(({ error, res }) => {
             if (error) {
-                setServerError(error);
+                setServerError(`Ошибка запроса: ${error}`);
             }
         });
     };
@@ -62,19 +63,26 @@ const AuthorizationContainer = ({ className }) => {
         font-width: bold;
     `;
 
-    const Title = styled.h2`
-        margin-bottom: 5px;
-    `;
-
     return (
         <div className={className}>
-            <Title>Авторизация</Title>
+            <H2>Авторизация</H2>
             <Form onSubmit={handleSubmit(onSubmit)}>
-                <Input type="text" placeholder="логин" {...register("login")} />
-                <Input type="password" placeholder="пароль" {...register("password")} />
+                <Input
+                    type="text"
+                    placeholder="логин"
+                    {...register("login", { onChange: () => setServerError(null) })}
+                />
+                <Input
+                    type="password"
+                    placeholder="пароль"
+                    {...register("password", { onChange: () => setServerError(null) })}
+                />
                 <Button type="submit" disabled={!!formError}>
                     авторизоваться
                 </Button>
+                <Link to="/register">
+                    <Button>Регистрация</Button>
+                </Link>
                 {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
             </Form>
         </div>
