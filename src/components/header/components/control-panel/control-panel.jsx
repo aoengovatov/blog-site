@@ -1,21 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
+import { Icon, Button } from "../../../../components";
 import styled from "styled-components";
-import { Icon } from "../../../../components";
 
 const RightAligned = styled.div`
     display: flex;
     justify-content: end;
-`;
-
-const Botton = styled.button`
-    font-size: 16px;
-    padding: 3px 10px;
-    background: #fff;
-    color: #000;
-    border: none;
-    border: 1px solid #000;
-    border-radius: 3px;
-    cursor: pointer;
 `;
 
 const ControlPanelContainer = ({ className }) => {
@@ -24,7 +13,7 @@ const ControlPanelContainer = ({ className }) => {
         <div className={className}>
             <RightAligned>
                 <Link to="/login">
-                    <Botton>Войти</Botton>
+                    <Button>Войти</Button>
                 </Link>
             </RightAligned>
             <RightAligned>

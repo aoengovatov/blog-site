@@ -3,6 +3,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { server } from "../../bff";
 import { useState } from "react";
+import { Input, Button } from "../../components";
 import styled from "styled-components";
 
 const authFormShema = yup.object().shape({
@@ -53,20 +54,7 @@ const AuthorizationContainer = ({ className }) => {
     const Form = styled.form`
         display: flex;
         flex-direction: column;
-    `;
-
-    const Input = styled.input`
-        margin-bottom: 5px;
-        color: #000;
-        background: #fff;
-        border: 1px solid #000;
-        padding: 3px 5px;
-    `;
-
-    const Botton = styled.button`
-        cursor: pointer;
-        background-color: blue;
-        color: #fff;
+        width: 260px;
     `;
 
     const ErrorMessage = styled.div`
@@ -84,9 +72,9 @@ const AuthorizationContainer = ({ className }) => {
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Input type="text" placeholder="логин" {...register("login")} />
                 <Input type="password" placeholder="пароль" {...register("password")} />
-                <Botton type="submit" disabled={!!formError}>
-                    Войти
-                </Botton>
+                <Button type="submit" disabled={!!formError}>
+                    авторизоваться
+                </Button>
                 {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
             </Form>
         </div>
@@ -96,7 +84,7 @@ const AuthorizationContainer = ({ className }) => {
 export const Authrization = styled(AuthorizationContainer)`
     display: flex;
     flex-direction: column;
-    width: 260px;
+    align-items: center;
     margin: 0 auto;
     margin-top: 15px;
 `;
