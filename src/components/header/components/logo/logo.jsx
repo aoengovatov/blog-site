@@ -7,11 +7,14 @@ const LargeText = styled.div`
     font-weight: 600;
     line-height: 48px;
     margin-top: 20px;
+    color: #3465e3;
 `;
 
 const SmallText = styled.div`
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 500;
+    color: #767575;
+    margin-top: 5px;
 `;
 
 const LogoContainer = ({ className }) => {
@@ -19,8 +22,8 @@ const LogoContainer = ({ className }) => {
         <Link className={className} to="/">
             <Icon id="fa-code" size="70px" margin="0 10px 0 0" />
             <div>
-                <LargeText>Блог</LargeText>
-                <SmallText>веб-разработчика</SmallText>
+                <LargeText>Blog</LargeText>
+                <SmallText>web-developer</SmallText>
             </div>
         </Link>
     );

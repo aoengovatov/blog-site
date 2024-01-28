@@ -72,6 +72,17 @@ const AuthorizationContainer = ({ className }) => {
         width: 260px;
     `;
 
+    const RegTitle = styled.div`
+        width: 100%;
+        text-align: center;
+        color: #555555;
+        margin-top: 5px;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    `;
+
     if (roleId !== ROLE.GUEST) {
         return <Navigate to="/" />;
     }
@@ -91,10 +102,10 @@ const AuthorizationContainer = ({ className }) => {
                     {...register("password", { onChange: () => setServerError(null) })}
                 />
                 <Button type="submit" disabled={!!formError}>
-                    авторизоваться
+                    вход
                 </Button>
                 <Link to="/register">
-                    <Button>Регистрация</Button>
+                    <RegTitle>регистрация</RegTitle>
                 </Link>
                 {errorMessage && <AuthFormError>{errorMessage}</AuthFormError>}
             </Form>

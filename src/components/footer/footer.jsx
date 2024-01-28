@@ -18,13 +18,17 @@ const FooterContainer = ({ className }) => {
             });
     }, []);
 
+    const RightSideBlock = styled.div`
+        text-align: right;
+    `;
+
     return (
         <div className={className}>
             <div>
                 <div>Блог веб-разработчика</div>
                 <div>web@developer.ru</div>
             </div>
-            <div>
+            <RightSideBlock>
                 <div>
                     {sity},{" "}
                     {new Date().toLocaleString("ru", { day: "numeric", month: "long" })}
@@ -32,7 +36,7 @@ const FooterContainer = ({ className }) => {
                 <div>
                     {temperature} градусов, {weather}
                 </div>
-            </div>
+            </RightSideBlock>
         </div>
     );
 };
@@ -41,9 +45,10 @@ export const Footer = styled(FooterContainer)`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-weight: bold;
+    font-weight: 600;
+    color: #fff;
     width: 1000px;
     padding: 20px 40px;
-    background-color: #fff;
-    box-shadow: 0px 2px 17px #000;
+    background-color: #143370;
+    box-shadow: 0px 2px 17px #555555;
 `;

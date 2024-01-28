@@ -15,6 +15,7 @@ const AppColumn = styled.div`
 
 const Content = styled.div`
     padding: 120px 0;
+    margin: 0 20px;
 `;
 
 export const Blog = () => {

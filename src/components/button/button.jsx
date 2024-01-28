@@ -9,13 +9,17 @@ const ButtonContainer = ({ className, children, width, ...props }) => {
 };
 
 export const Button = styled(ButtonContainer)`
-    font-size: 16px;
-    padding: 3px 10px;
-    background: #fff;
+    font-size: 14px;
+    padding: 7px 13px;
+    background: #3465e3;
     width: ${({ width = "100%" }) => width};
-    color: #000;
+    color: #f1e7e7;
     border: none;
-    border: 1px solid #000;
-    border-radius: 3px;
+    border-radius: 4px;
     cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        background: #1d4fcd;
+    }
 `;

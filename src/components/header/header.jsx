@@ -3,6 +3,7 @@ import { Logo, ControlPanel } from "./components";
 
 const Description = styled.div`
     font-style: italic;
+    color: #525252;
 `;
 
 const HeaderContainer = ({ className }) => (
@@ -29,5 +30,5 @@ export const Header = styled(HeaderContainer)`
     height: 120px;
     padding: 20px 40px;
     background-color: #fff;
-    box-shadow: 0px -2px 17px #000;
+    box-shadow: 0px -2px 17px #555555;
 `;

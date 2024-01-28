@@ -26,6 +26,8 @@ const RightAlignedLogin = styled.div`
 const UserLogin = styled.div`
     font-size: 18px;
     font-weight: bold;
+    color: #3465e3;
+    text-transform: uppercase;
 `;
 
 const ControlPanelContainer = ({ className }) => {
@@ -42,7 +44,7 @@ const ControlPanelContainer = ({ className }) => {
                 {roleId === ROLE.GUEST ? (
                     <>
                         <Link to="/login">
-                            <Button>Войти</Button>
+                            <Button>войти</Button>
                         </Link>
                     </>
                 ) : (
