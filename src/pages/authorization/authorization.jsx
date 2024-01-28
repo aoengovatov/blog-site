@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../actions";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
@@ -40,11 +42,15 @@ const AuthorizationContainer = ({ className }) => {
 
     const [serverError, setServerError] = useState(null);
 
+    const dispatch = useDispatch();
+
     const onSubmit = ({ login, password }) => {
         server.authorize(login, password).then(({ error, res }) => {
             if (error) {
                 setServerError(`Ошибка запроса: ${error}`);
+                return;
             }
+            dispatch(setUser(res));
         });
     };
 
