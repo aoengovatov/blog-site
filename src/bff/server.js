@@ -1,11 +1,10 @@
 import { getUser } from "./get-user";
 import { addUser } from "./add-user";
 import { sessions } from "./sessions";
-import { createSession } from "./create-session";
 
 export const server = {
     async authorize(authLogin, authPassword) {
-        const user = getUser(authLogin);
+        const user = await getUser(authLogin);
 
         if (!user) {
             return {
@@ -52,5 +51,9 @@ export const server = {
                 session: sessions.create(user),
             },
         };
+    },
+
+    async logout(session) {
+        sessions.remove(session);
     },
 };
