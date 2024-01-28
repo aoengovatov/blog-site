@@ -10,15 +10,22 @@ import { ROLE } from "../../../../constants";
 import { logout } from "../../../../actions";
 import styled from "styled-components";
 
-const RightAligned = styled.div`
+const RightAlignedIcons = styled.div`
     display: flex;
     justify-content: end;
+    align-items: center;
+    margin-top: 7px;
+`;
+
+const RightAlignedLogin = styled.div`
+    display: flex;
+    justify-content: end;
+    align-items: center;
 `;
 
 const UserLogin = styled.div`
     font-size: 18px;
     font-weight: bold;
-    margin-right: 10px;
 `;
 
 const ControlPanelContainer = ({ className }) => {
@@ -31,7 +38,7 @@ const ControlPanelContainer = ({ className }) => {
 
     return (
         <div className={className}>
-            <RightAligned>
+            <RightAlignedLogin>
                 {roleId === ROLE.GUEST ? (
                     <>
                         <Link to="/login">
@@ -42,22 +49,22 @@ const ControlPanelContainer = ({ className }) => {
                     <>
                         <UserLogin>{login}</UserLogin>
                         <div onClick={() => dispatch(logout(session))}>
-                            <Icon id="fa-sign-out" margin="5px 0 0 15px" />
+                            <Icon id="fa-sign-out" margin="0 0 0 10px" />
                         </div>
                     </>
                 )}
-            </RightAligned>
-            <RightAligned>
+            </RightAlignedLogin>
+            <RightAlignedIcons>
                 <div onClick={() => navigate(-1)}>
-                    <Icon id="fa-backward" margin="5px 0 0 0" />
+                    <Icon id="fa-backward" margin="0 0 0 0" />
                 </div>
                 <Link to="/post">
-                    <Icon id="fa-file-text-o" margin="5px 0 0 15px" />
+                    <Icon id="fa-file-text-o" margin="0 0 0 15px" />
                 </Link>
                 <Link to="/users">
-                    <Icon id="fa-users" margin="5px 0 0 15px" />
+                    <Icon id="fa-users" margin="0 0 0 15px" />
                 </Link>
-            </RightAligned>
+            </RightAlignedIcons>
         </div>
     );
 };
