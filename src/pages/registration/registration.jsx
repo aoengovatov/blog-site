@@ -1,14 +1,15 @@
 import { useForm } from "react-hook-form";
-import { useDispatch, useStore, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useResetForm } from "../../hooks";
 import { selectUserRole } from "../../selectors";
 import { ROLE } from "../../constants";
 import { setUser } from "../../actions";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { server } from "../../bff";
-import { useState, useEffect } from "react";
-import { Input, Button, H2 } from "../../components";
+import { useState } from "react";
+import { Input, Button, H2, AuthFormError } from "../../components";
 import styled from "styled-components";
 
 const regFormSchema = yup.object().shape({
@@ -51,22 +52,10 @@ const RegistrationContainer = ({ className }) => {
     const [serverError, setServerError] = useState(null);
 
     const dispatch = useDispatch();
-    const store = useStore();
 
     const roleId = useSelector(selectUserRole);
 
-    useEffect(() => {
-        let previousWasLogout = store.getState().app.wasLogout;
-
-        return store.subscribe(() => {
-            let currentWasLogout = previousWasLogout;
-            currentWasLogout = store.getState().app.wasLogout;
-
-            if (currentWasLogout != previousWasLogout) {
-                reset();
-            }
-        });
-    }, [reset, store]);
+    useResetForm(reset);
 
     const onSubmit = ({ login, password }) => {
         server.register(login, password).then(({ error, res }) => {
@@ -87,11 +76,6 @@ const RegistrationContainer = ({ className }) => {
         display: flex;
         flex-direction: column;
         width: 260px;
-    `;
-
-    const ErrorMessage = styled.div`
-        color: red;
-        font-width: bold;
     `;
 
     if (roleId !== ROLE.GUEST) {
@@ -120,7 +104,7 @@ const RegistrationContainer = ({ className }) => {
                 <Button type="submit" disabled={!!formError}>
                     зарегистрироваться
                 </Button>
-                {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+                {errorMessage && <AuthFormError>{errorMessage}</AuthFormError>}
             </Form>
         </div>
     );
