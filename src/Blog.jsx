@@ -13,7 +13,7 @@ const AppColumn = styled.div`
     background-color: #fff;
 `;
 
-const Content = styled.div`
+const Page = styled.div`
     padding: 120px 0;
     margin: 0 20px;
 `;
@@ -22,7 +22,7 @@ export const Blog = () => {
     return (
         <AppColumn>
             <Header />
-            <Content>
+            <Page>
                 <Routes>
                     <Route path="/" element={<div>Главная станица</div>} />
                     <Route path="/login" element={<Authrization />} />
@@ -32,7 +32,7 @@ export const Blog = () => {
                     <Route path="/post/:postId" element={<div>Статья</div>} />
                     <Route path="*" element={<div>Ошибка</div>} />
                 </Routes>
-            </Content>
+            </Page>
             <Footer />
         </AppColumn>
     );
