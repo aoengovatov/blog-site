@@ -5,9 +5,8 @@ import { TableRow } from "../table-row/table-row";
 
 import styled from "styled-components";
 
-const UserRowContainer = ({ className, id, login, registeredAt, userRoleId }) => {
+const UserRowContainer = ({ className, login, registedAt, userRoleId, roles }) => {
     const dispatch = useDispatch();
-    const roles = [];
 
     const onRoleChange = () => {};
 
@@ -15,7 +14,7 @@ const UserRowContainer = ({ className, id, login, registeredAt, userRoleId }) =>
         <div className={className}>
             <TableRow>
                 <div className="login-column">{login}</div>
-                <div className="registered-at-column">{registeredAt}</div>
+                <div className="registered-at-column">{registedAt}</div>
                 <div className="role-column">
                     <select value={ROLE[userRoleId]} onChange={() => onRoleChange()}>
                         {roles.map(({ id: roleId, name: roleName }) => (

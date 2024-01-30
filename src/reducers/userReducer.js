@@ -4,7 +4,7 @@ import { ACTION_TYPE } from "../actions";
 const initialUserState = {
     id: null,
     login: null,
-    role_id: ROLE.GUEST,
+    roleId: ROLE.GUEST,
     session: null,
 };
 

@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { thunk } from "redux-thunk";
 import { userReducer, usersReducer, postReducer, postsReducer, appReducer } from "./reducers";
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_RXTENSION_COMPOSE__ || compose;
+//const composeEnhancer = window.__REDUX_DEVTOOLS_RXTENSION_COMPOSE__ || compose;
 
 const reducer = combineReducers({
     user: userReducer,
@@ -12,4 +12,4 @@ const reducer = combineReducers({
     app: appReducer,
 });
 
-export const store = createStore(reducer, composeEnhancer(applyMiddleware(thunk)));
+export const store = createStore(reducer, applyMiddleware(thunk));

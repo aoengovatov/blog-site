@@ -17,11 +17,13 @@ const UsersContainer = ({ className }) => {
                     setErrorMessage(usersRes.error || rolesRes.error);
                     return;
                 }
-                setRoles(rolesRes);
-                setUsers(usersRes);
+                setRoles(rolesRes.res);
+                setUsers(usersRes.res);
+                console.log(usersRes.res);
+                console.log(rolesRes.res);
             }
         );
-    }, [requestServer]);
+    }, []);
 
     return (
         <div className={className}>
@@ -33,12 +35,12 @@ const UsersContainer = ({ className }) => {
                     <div className="role-column">роль</div>
                 </TableRow>
 
-                {users.map(({ id, login, registredAt, roleId }) => (
+                {users?.map(({ id, login, registed_at, role_id }) => (
                     <UserRow
                         key={id}
                         login={login}
-                        registeredAt={registredAt}
-                        roleId={roleId}
+                        registedAt={registed_at}
+                        userRoleId={role_id}
                         roles={roles}
                     />
                 ))}

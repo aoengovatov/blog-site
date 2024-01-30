@@ -5,7 +5,7 @@
       "login": "anton",
       "password": "qwery123",
       "registed_at": "2050-09-22",
-      "role_id": 1
+      "role_id": 0
     },
     {
       "id": "bbe8",
@@ -19,20 +19,6 @@
       "login": "ivan2",
       "password": "qwerty123",
       "registed_at": "2049-01-25-21:34",
-      "role_id": 2
-    },
-    {
-      "id": "b9a2",
-      "login": "anton2",
-      "password": "qwerty123",
-      "registed_at": "2064-03-30-09:52",
-      "role_id": 2
-    },
-    {
-      "id": "16cd",
-      "login": "anton3",
-      "password": "123456",
-      "registed_at": "2057-03-03-04:54",
       "role_id": 2
     }
   ],
