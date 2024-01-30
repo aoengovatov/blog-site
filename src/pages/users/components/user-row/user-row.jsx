@@ -1,8 +1,7 @@
 import { Icon } from "../../../../components";
-import { ROLE } from "../../../../constants";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { TableRow } from "../table-row/table-row";
-
 import styled from "styled-components";
 
 const UserRowContainer = ({
@@ -12,9 +11,12 @@ const UserRowContainer = ({
     roleId: userRoleId,
     roles,
 }) => {
+    const [selectedRoleId, setSelectedRoleId] = useState(userRoleId);
     const dispatch = useDispatch();
 
-    const onRoleChange = () => {};
+    const onRoleChange = ({ target }) => {
+        setSelectedRoleId(target.value);
+    };
 
     return (
         <div className={className}>
@@ -23,7 +25,10 @@ const UserRowContainer = ({
                     <div className="login-column">{login}</div>
                     <div className="registered-at-column">{registedAt}</div>
                     <div className="role-column">
-                        <select value={userRoleId} onChange={onRoleChange()}>
+                        <select
+                            value={selectedRoleId}
+                            onChange={(target) => onRoleChange(target)}
+                        >
                             {roles.map(({ id: roleId, name: roleName }) => (
                                 <option key={roleId} value={roleId}>
                                     {roleName}

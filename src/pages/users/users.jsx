@@ -19,31 +19,33 @@ const UsersContainer = ({ className }) => {
                 }
                 setRoles(rolesRes.res);
                 setUsers(usersRes.res);
-                console.log(usersRes.res);
-                console.log(rolesRes.res);
             }
         );
-    }, []);
+    }, [requestServer]);
 
     return (
         <div className={className}>
             <Content error={errorMessage}>
                 <H2>Пользователи</H2>
-                <TableRow>
-                    <div className="login-column">логин</div>
-                    <div className="registered-at-column">дата регистрации</div>
-                    <div className="role-column">роль</div>
-                </TableRow>
+                <div className="content-container">
+                    <TableRow>
+                        <div className="table-header">
+                            <div className="login-column">логин</div>
+                            <div className="registered-at-column">дата регистрации</div>
+                            <div className="role-column">роль</div>
+                        </div>
+                    </TableRow>
 
-                {users?.map(({ id, login, registedAt, roleId }) => (
-                    <UserRow
-                        key={id}
-                        login={login}
-                        registedAt={registedAt}
-                        roleId={roleId}
-                        roles={roles}
-                    />
-                ))}
+                    {users?.map(({ id, login, registedAt, roleId }) => (
+                        <UserRow
+                            key={id}
+                            login={login}
+                            registedAt={registedAt}
+                            roleId={roleId}
+                            roles={roles}
+                        />
+                    ))}
+                </div>
             </Content>
         </div>
     );
@@ -55,4 +57,15 @@ export const Users = styled(UsersContainer)`
     align-items: center;
     margin: 0 auto;
     width: 570px;
+
+    & .content-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    & .table-header {
+        display: flex;
+        margin-left: 5px;
+    }
 `;
