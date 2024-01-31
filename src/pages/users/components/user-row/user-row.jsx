@@ -15,8 +15,11 @@ const UserRowContainer = ({
     const dispatch = useDispatch();
 
     const onRoleChange = ({ target }) => {
-        setSelectedRoleId(target.value);
+        setSelectedRoleId(Number(target.value));
     };
+
+    const isSaveButtonDisabled = selectedRoleId === userRoleId;
+    console.log(roles);
 
     return (
         <div className={className}>
@@ -35,8 +38,10 @@ const UserRowContainer = ({
                                 </option>
                             ))}
                         </select>
+
                         <Icon
                             id="fa-floppy-o"
+                            disabled={isSaveButtonDisabled}
                             margin="0 0 0 10px"
                             onClick={() => dispatch(/*TODO*/)}
                         />

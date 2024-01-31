@@ -2,6 +2,7 @@ import { Content, H2 } from "../../components";
 import { useServerRequest } from "../../hooks";
 import { UserRow, TableRow } from "./components";
 import { useEffect, useState } from "react";
+import { ROLE } from "../../constants";
 import styled from "styled-components";
 
 const UsersContainer = ({ className }) => {
@@ -42,7 +43,7 @@ const UsersContainer = ({ className }) => {
                             login={login}
                             registedAt={registedAt}
                             roleId={roleId}
-                            roles={roles}
+                            roles={roles.filter(({ id }) => id !== ROLE.GUEST)}
                         />
                     ))}
                 </div>
