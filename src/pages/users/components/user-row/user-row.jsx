@@ -12,6 +12,7 @@ const UserRowContainer = ({
     registedAt,
     roleId: userRoleId,
     roles,
+    onUserRemove,
 }) => {
     const [initialRoleId, setInitialRoleId] = useState(userRoleId);
     const [selectedRoleId, setSelectedRoleId] = useState(userRoleId);
@@ -60,8 +61,9 @@ const UserRowContainer = ({
                     </div>
                 </div>
             </TableRow>
-
-            <Icon id="fa-trash-o" margin="0 0 0 5px" onClick={() => {}} />
+            <div onClick={onUserRemove}>
+                <Icon id="fa-trash-o" margin="0 0 0 5px" />
+            </div>
         </div>
     );
 };
