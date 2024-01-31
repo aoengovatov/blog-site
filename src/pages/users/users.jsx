@@ -37,13 +37,16 @@ const UsersContainer = ({ className }) => {
                         </div>
                     </TableRow>
 
-                    {users?.map(({ id, login, registedAt, roleId }) => (
+                    {users.map(({ id, login, registedAt, roleId }) => (
                         <UserRow
                             key={id}
+                            id={id}
                             login={login}
                             registedAt={registedAt}
                             roleId={roleId}
-                            roles={roles.filter(({ id }) => id !== ROLE.GUEST)}
+                            roles={roles.filter(
+                                ({ id: roleId }) => roleId !== ROLE.GUEST
+                            )}
                         />
                     ))}
                 </div>
