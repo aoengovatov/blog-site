@@ -63,5 +63,6 @@ export const PostContent = styled(PostContentContainer)`
 
     & .post-content {
         text-align: justify;
+        margin-bottom: 20px;
     }
 `;
