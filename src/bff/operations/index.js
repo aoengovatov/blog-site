@@ -5,3 +5,4 @@ export * from "./fetch-roles";
 export * from "./fetch-users";
 export * from "./updateUserRole";
 export * from "./remove-user";
+export * from "./fetch-post";

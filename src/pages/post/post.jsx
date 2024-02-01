@@ -14,8 +14,8 @@ const PostContainer = ({ className }) => {
     const post = useSelector(selectPost);
 
     useEffect(() => {
-        dispatch(loadPostAsync(requestServer, params.id));
-    });
+        dispatch(loadPostAsync(requestServer, params.postId));
+    }, [dispatch, requestServer, params.postId]);
 
     return (
         <div className={className}>

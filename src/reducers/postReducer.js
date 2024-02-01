@@ -3,9 +3,9 @@ import { ACTION_TYPE } from "../actions";
 const initialPostState = {
     id: "",
     title: "",
-    image_url: "",
+    imageUrl: "",
     content: "",
-    publushed_at: "",
+    publushedAt: "",
     comments: [],
 };
 

@@ -3,28 +3,23 @@ import styled from "styled-components";
 
 const PostContentContainer = ({
     className,
-    id,
-    title,
-    image_url,
-    content,
-    publushedAt,
+    post: { id, title, imageUrl, content, publushedAt },
 }) => {
-    console.log(title);
     return (
         <div className={className}>
             <div className="post-title">{title}</div>
             <div className="post-attribut">
                 <div className="date-icon">
-                    <Icon id="fa-date-o" />
-                    <div className="post_date">{publushed_at}</div>
+                    <Icon id="fa-calendar-o" />
+                    <div className="post_date">{publushedAt}</div>
                 </div>
                 <div className="post-edit-panel">
-                    <Icon id="fa-edit-o" />
-                    <Icon id="fa-trash-o" />
+                    <Icon id="fa-pencil-square-o" />
+                    <Icon id="fa-trash-o" margin="0 0 0 10px" />
                 </div>
             </div>
             <div className="post-content-container">
-                <img src={image_url} alt={title}></img>
+                <img src={imageUrl} alt={title}></img>
                 <div className="post-content">{content}</div>
             </div>
         </div>
@@ -34,4 +29,14 @@ const PostContentContainer = ({
 export const PostContent = styled(PostContentContainer)`
     display: flex;
     flex-direction: column;
+    width: 100%;
+
+    & .post-attribut {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    & .post-edit-panel {
+        display: flex;
+    }
 `;
