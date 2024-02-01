@@ -1,4 +1,5 @@
 import { Icon } from "../../../../components";
+import { H2 } from "../../../../components";
 import styled from "styled-components";
 
 const PostContentContainer = ({
@@ -7,19 +8,28 @@ const PostContentContainer = ({
 }) => {
     return (
         <div className={className}>
-            <div className="post-title">{title}</div>
+            <H2>{title}</H2>
             <div className="post-attribut">
                 <div className="date-icon">
-                    <Icon id="fa-calendar-o" />
+                    <Icon id="fa-calendar-o" margin="0 10px 0 0" />
                     <div className="post_date">{publushedAt}</div>
                 </div>
                 <div className="post-edit-panel">
-                    <Icon id="fa-pencil-square-o" />
-                    <Icon id="fa-trash-o" margin="0 0 0 10px" />
+                    <div onClick={() => {}}>
+                        <Icon id="fa-pencil-square-o" />
+                    </div>
+                    <div onClick={() => {}}>
+                        <Icon id="fa-trash-o" margin="0 0 0 10px" />
+                    </div>
                 </div>
             </div>
             <div className="post-content-container">
-                <img src={imageUrl} alt={title}></img>
+                <img
+                    className="post-content-image"
+                    src={imageUrl}
+                    alt={title}
+                    align="left"
+                ></img>
                 <div className="post-content">{content}</div>
             </div>
         </div>
@@ -34,9 +44,24 @@ export const PostContent = styled(PostContentContainer)`
     & .post-attribut {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 5px;
     }
 
     & .post-edit-panel {
         display: flex;
+    }
+
+    & .date-icon {
+        display: flex;
+        align-items: center;
+    }
+
+    & .post-content-image {
+        width: 300px;
+        margin: 0 12px 12px 0;
+    }
+
+    & .post-content {
+        text-align: justify;
     }
 `;

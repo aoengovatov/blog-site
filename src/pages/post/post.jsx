@@ -29,5 +29,5 @@ export const Post = styled(PostContainer)`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
+    margin: 0 40px 20px 40px;
 `;
