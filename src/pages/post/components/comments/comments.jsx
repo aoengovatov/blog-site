@@ -13,13 +13,13 @@ const CommentsContainer = ({ className, comments, postId }) => {
     const dispatch = useDispatch();
     const serverRequest = useServerRequest();
 
-    const onChangeComment = ({ target }) => {
-        setNewComment(target.value);
-    };
-
     const onNewCommentAdd = (userid, postId, content) => {
-        dispatch(addCommentAsync(serverRequest, userId, postId, content));
+        if (content !== "") {
+            dispatch(addCommentAsync(serverRequest, userId, postId, content));
+        }
+        setNewComment("");
     };
+    console.log(comments);
 
     return (
         <div className={className}>
@@ -29,7 +29,7 @@ const CommentsContainer = ({ className, comments, postId }) => {
                     className="textarea-comment"
                     value={newComment}
                     placeholder="комментарий..."
-                    onChange={(target) => onChangeComment(target)}
+                    onChange={({ target }) => setNewComment(target.value)}
                 ></textarea>
                 <div
                     onClick={() => {
@@ -57,8 +57,8 @@ const CommentsContainer = ({ className, comments, postId }) => {
 export const Comments = styled(CommentsContainer)`
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 450px;
+    /*align-items: center;*/
+    width: 500px;
 
     & .new-comment-container {
         display: flex;
@@ -70,5 +70,6 @@ export const Comments = styled(CommentsContainer)`
         min-height: 100px;
         max-height: 100px;
         padding: 5px;
+        margin-bottom: 10px;
     }
 `;
