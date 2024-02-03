@@ -19,7 +19,6 @@ const CommentsContainer = ({ className, comments, postId }) => {
         }
         setNewComment("");
     };
-    console.log(comments);
 
     return (
         <div className={className}>
@@ -44,6 +43,7 @@ const CommentsContainer = ({ className, comments, postId }) => {
                     <Comment
                         key={id}
                         id={id}
+                        postId={postId}
                         author={author}
                         content={content}
                         publishedAt={publishedAt}

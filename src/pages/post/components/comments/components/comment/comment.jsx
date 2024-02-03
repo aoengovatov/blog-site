@@ -1,7 +1,17 @@
 import { Icon } from "../../../../../../components";
 import styled from "styled-components";
+import { removeCommentAsync } from "../../../../../../actions";
+import { useDispatch } from "react-redux";
+import { useServerRequest } from "../../../../../../hooks";
 
-const CommentContainer = ({ className, id, author, content, publishedAt }) => {
+const CommentContainer = ({ className, id, postId, author, content, publishedAt }) => {
+    const dispatch = useDispatch();
+    const requestServer = useServerRequest();
+
+    const onDeleteComment = (id, postId) => {
+        dispatch(removeCommentAsync(requestServer, id, postId));
+    };
+
     return (
         <div className={className}>
             <div className="user-comment-container">
@@ -17,7 +27,11 @@ const CommentContainer = ({ className, id, author, content, publishedAt }) => {
                 </div>
                 <div className="content-comment">{content}</div>
             </div>
-            <div onClick={() => {}}>
+            <div
+                onClick={() => {
+                    onDeleteComment(id, postId);
+                }}
+            >
                 <Icon id="fa-trash-o" margin="0 0 0 10px" size="22px" />
             </div>
         </div>

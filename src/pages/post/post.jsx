@@ -17,8 +17,6 @@ const PostContainer = ({ className }) => {
         dispatch(loadPostAsync(requestServer, params.postId));
     }, [dispatch, requestServer, params.postId]);
 
-    console.log(post);
-
     return (
         <div className={className}>
             <PostContent post={post} />
