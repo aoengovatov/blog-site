@@ -14,15 +14,15 @@ const ModalContainer = ({ className }) => {
     const onCancel = useSelector(selectModalOnCalcel);
     const isOpen = useSelector(selectModalIsOpen);
 
-    /*if (!isOpen) {
+    if (!isOpen) {
         return null;
-    }*/
+    }
 
     return (
         <div className={className}>
             <div className="overlay"></div>
             <div className="box">
-                <h3 className="modal-title">Удалить комментарий?{text}</h3>
+                <h3 className="modal-title">{text}</h3>
                 <div className="buttons">
                     <Button width="120px" onClick={onConfirn}>
                         Ок
