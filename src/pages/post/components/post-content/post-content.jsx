@@ -1,4 +1,5 @@
 import { PostPanel } from "../post-panel/post-panel";
+import { useNavigate } from "react-router-dom";
 import { H2, Icon } from "../../../../components";
 import styled from "styled-components";
 
@@ -6,13 +7,15 @@ const PostContentContainer = ({
     className,
     post: { id, title, imageUrl, content, publushedAt },
 }) => {
+    const navigate = useNavigate();
+
     return (
         <div className={className}>
             <H2>{title}</H2>
             <PostPanel
                 publushedAt={publushedAt}
                 editButton={
-                    <div onClick={() => {}}>
+                    <div onClick={() => navigate(`/post/${id}/edit`)}>
                         <Icon id="fa-pencil-square-o" />
                     </div>
                 }

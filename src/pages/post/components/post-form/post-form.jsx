@@ -1,4 +1,8 @@
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { savePostAsync } from "../../../../actions";
+import { useServerRequest } from "../../../../hooks";
 import { Input, Icon } from "../../../../components";
 import { PostPanel } from "../post-panel/post-panel";
 import { sanitizeContent } from "./utils";
@@ -11,14 +15,25 @@ const PostFormContainer = ({
     const imageRef = useRef(null);
     const titleRef = useRef(null);
     const contentRef = useRef(null);
+    const dispatch = useDispatch();
+    const requestServer = useServerRequest();
+    const navigate = useNavigate();
 
     const onSave = () => {
         const newImageUrl = imageRef.current.value;
         const newTitle = titleRef.current.value;
         const newContent = sanitizeContent(contentRef.current.innerHTML);
 
-        console.log(newImageUrl, newTitle, newContent);
+        dispatch(
+            savePostAsync(requestServer, {
+                id,
+                imageUrl: newImageUrl,
+                title: newTitle,
+                content: newContent,
+            })
+        ).then(() => navigate(`/post/${id}`));
     };
+
     return (
         <div className={className}>
             <Input ref={titleRef} defaultValue={title} plaсeholder="Заголовок" />
@@ -49,6 +64,7 @@ export const PostForm = styled(PostFormContainer)`
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-top: 30px;
 
     & .post-content-image {
         width: 300px;
