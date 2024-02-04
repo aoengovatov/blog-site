@@ -38,12 +38,9 @@ const PostFormContainer = ({
         <div className={className}>
             <Input ref={titleRef} defaultValue={title} plaсeholder="Заголовок" />
             <PostPanel
+                id={id}
                 publushedAt={publushedAt}
-                editButton={
-                    <div onClick={onSave}>
-                        <Icon id="fa-floppy-o" />
-                    </div>
-                }
+                editButton={<Icon id="fa-floppy-o" onClick={onSave} />}
             />
             <div className="post-content-container">
                 <Input ref={imageRef} defaultValue={imageUrl} plaсeholder="Изображение" />

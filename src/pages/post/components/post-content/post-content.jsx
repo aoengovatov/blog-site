@@ -13,11 +13,13 @@ const PostContentContainer = ({
         <div className={className}>
             <H2>{title}</H2>
             <PostPanel
+                id={id}
                 publushedAt={publushedAt}
                 editButton={
-                    <div onClick={() => navigate(`/post/${id}/edit`)}>
-                        <Icon id="fa-pencil-square-o" />
-                    </div>
+                    <Icon
+                        id="fa-pencil-square-o"
+                        onClick={() => navigate(`/post/${id}/edit`)}
+                    />
                 }
             />
             <div className="post-content-container">

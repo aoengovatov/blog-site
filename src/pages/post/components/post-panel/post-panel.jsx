@@ -1,7 +1,31 @@
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { openModal, CLOSE_MODAL, removePostAsync } from "../../../../actions";
+import { useServerRequest } from "../../../../hooks";
 import { Icon } from "../../../../components";
 import styled from "styled-components";
 
-const PostPanelContainer = ({ className, publushedAt, editButton }) => {
+const PostPanelContainer = ({ className, id, publushedAt, editButton }) => {
+    const dispatch = useDispatch();
+    const requestServer = useServerRequest();
+    const navigate = useNavigate();
+
+    const onPostDelete = (id) => {
+        dispatch(
+            openModal({
+                text: "Удалить статью?",
+                onConfirn: () => {
+                    dispatch(removePostAsync(requestServer, id)).then(() => {
+                        navigate("/");
+                    });
+
+                    dispatch(CLOSE_MODAL);
+                },
+                onCancel: () => dispatch(CLOSE_MODAL),
+            })
+        );
+    };
+
     return (
         <div className={className}>
             <div className="date-icon">
@@ -10,9 +34,11 @@ const PostPanelContainer = ({ className, publushedAt, editButton }) => {
             </div>
             <div className="post-edit-panel">
                 {editButton}
-                <div onClick={() => {}}>
-                    <Icon id="fa-trash-o" margin="0 0 0 10px" />
-                </div>
+                <Icon
+                    id="fa-trash-o"
+                    margin="0 0 0 10px"
+                    onClick={() => onPostDelete(id)}
+                />
             </div>
         </div>
     );
