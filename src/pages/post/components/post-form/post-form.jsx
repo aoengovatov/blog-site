@@ -1,36 +1,37 @@
+import { Input, Icon } from "../../../../components";
 import { PostPanel } from "../post-panel/post-panel";
-import { H2, Icon } from "../../../../components";
 import styled from "styled-components";
 
-const PostContentContainer = ({
+const PostFormContainer = ({
     className,
     post: { id, title, imageUrl, content, publushedAt },
 }) => {
     return (
         <div className={className}>
-            <H2>{title}</H2>
+            <Input defaultValue={title} />
             <PostPanel
                 publushedAt={publushedAt}
                 editButton={
                     <div onClick={() => {}}>
-                        <Icon id="fa-pencil-square-o" />
+                        <Icon id="fa-floppy-o" />
                     </div>
                 }
             />
             <div className="post-content-container">
-                <img
-                    className="post-content-image"
-                    src={imageUrl}
-                    alt={title}
-                    align="left"
-                ></img>
-                <div className="post-content">{content}</div>
+                <Input defaultValue={imageUrl} />
+                <div
+                    contentEditable={true}
+                    suppressContentEditableWarning={true}
+                    className="post-content"
+                >
+                    {content}
+                </div>
             </div>
         </div>
     );
 };
 
-export const PostContent = styled(PostContentContainer)`
+export const PostForm = styled(PostFormContainer)`
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -43,5 +44,6 @@ export const PostContent = styled(PostContentContainer)`
     & .post-content {
         text-align: justify;
         margin-bottom: 20px;
+        white-space: pre-line;
     }
 `;
