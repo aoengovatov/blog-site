@@ -18,7 +18,6 @@ const PostPanelContainer = ({ className, id, publushedAt, editButton }) => {
                     dispatch(removePostAsync(requestServer, id)).then(() => {
                         navigate("/");
                     });
-
                     dispatch(CLOSE_MODAL);
                 },
                 onCancel: () => dispatch(CLOSE_MODAL),

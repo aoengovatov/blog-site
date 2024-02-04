@@ -1,4 +1,4 @@
-import { deletePost } from "../api";
+import { deleteComment, deletePost, getComments } from "../api";
 import { sessions } from "../sessions";
 import { ROLE } from "../constants";
 
@@ -15,6 +15,10 @@ export const removePost = async (hash, id) => {
     }
 
     await deletePost(id);
+
+    const comments = await getComments(id);
+
+    await Promise.all(comments.map(({ id: commentId }) => deleteComment(commentId)));
 
     return {
         error: null,
