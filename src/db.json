@@ -77,6 +77,13 @@
       "post_id": "9372",
       "published_at": "2057-01-01-06:06",
       "content": "еще один"
+    },
+    {
+      "id": "2465",
+      "author_id": "1",
+      "post_id": "2",
+      "published_at": "2058-08-08-05:06",
+      "content": "второй коммент"
     }
   ],
   "sessions": [
