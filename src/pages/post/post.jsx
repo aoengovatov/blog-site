@@ -11,6 +11,7 @@ const PostContainer = ({ className }) => {
     const dispatch = useDispatch();
     const params = useParams();
     const isEditing = useMatch("/post/:postId/edit");
+    const isCreating = useMatch("/post");
     const requestServer = useServerRequest();
     const post = useSelector(selectPost);
 
@@ -19,12 +20,16 @@ const PostContainer = ({ className }) => {
     }, [dispatch]);
 
     useEffect(() => {
+        if (isCreating) {
+            return;
+        }
+
         dispatch(loadPostAsync(requestServer, params.postId));
-    }, [dispatch, requestServer, params.postId]);
+    }, [dispatch, requestServer, params.postId, isCreating]);
 
     return (
         <div className={className}>
-            {isEditing ? (
+            {isCreating || isEditing ? (
                 <PostForm post={post} />
             ) : (
                 <>

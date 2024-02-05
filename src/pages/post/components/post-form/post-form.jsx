@@ -36,14 +36,14 @@ const PostFormContainer = ({
 
     return (
         <div className={className}>
-            <Input ref={titleRef} defaultValue={title} plaсeholder="Заголовок" />
+            <Input ref={titleRef} defaultValue={title} placeholder="Заголовок" />
             <PostPanel
                 id={id}
                 publushedAt={publushedAt}
                 editButton={<Icon id="fa-floppy-o" onClick={onSave} />}
             />
             <div className="post-content-container">
-                <Input ref={imageRef} defaultValue={imageUrl} plaсeholder="Изображение" />
+                <Input ref={imageRef} defaultValue={imageUrl} placeholder="Изображение" />
                 <div
                     ref={contentRef}
                     contentEditable={true}
@@ -71,6 +71,15 @@ export const PostForm = styled(PostFormContainer)`
     & .post-content {
         text-align: justify;
         margin-bottom: 20px;
+        min-height: 80px;
+        border: 2px solid #8c8888;
+        border-radius: 5px;
         white-space: pre-line;
+        transition: all 0.2s;
+    }
+
+    & .post-content:focus {
+        outline: none;
+        border-color: #3465e3;
     }
 `;
