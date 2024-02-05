@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { savePostAsync } from "../../../../actions";
@@ -12,38 +12,49 @@ const PostFormContainer = ({
     className,
     post: { id, title, imageUrl, content, publushedAt },
 }) => {
-    const imageRef = useRef(null);
-    const titleRef = useRef(null);
+    const [imageUrlValue, setImageUrlValue] = useState(imageUrl);
+    const [titleValue, setTitleValue] = useState(title);
     const contentRef = useRef(null);
     const dispatch = useDispatch();
     const requestServer = useServerRequest();
     const navigate = useNavigate();
 
+    useLayoutEffect(() => {
+        setImageUrlValue(imageUrl);
+        setTitleValue(title);
+    }, [titleValue, imageUrlValue]);
+
     const onSave = () => {
-        const newImageUrl = imageRef.current.value;
-        const newTitle = titleRef.current.value;
         const newContent = sanitizeContent(contentRef.current.innerHTML);
 
         dispatch(
             savePostAsync(requestServer, {
                 id,
-                imageUrl: newImageUrl,
-                title: newTitle,
+                imageUrl: imageUrlValue,
+                title: titleValue,
                 content: newContent,
             })
-        ).then(() => navigate(`/post/${id}`));
+        ).then(({ id }) => navigate(`/post/${id}`));
     };
 
     return (
         <div className={className}>
-            <Input ref={titleRef} defaultValue={title} placeholder="Заголовок" />
+            <Input
+                value={titleValue}
+                placeholder="Заголовок"
+                onChange={({ target }) => setTitleValue(target.value)}
+            />
             <PostPanel
                 id={id}
                 publushedAt={publushedAt}
                 editButton={<Icon id="fa-floppy-o" onClick={onSave} />}
             />
             <div className="post-content-container">
-                <Input ref={imageRef} defaultValue={imageUrl} placeholder="Изображение" />
+                <Input
+                    value={imageUrlValue}
+                    placeholder="Изображение"
+                    onChange={({ target }) => setImageUrlValue(target.value)}
+                />
                 <div
                     ref={contentRef}
                     contentEditable={true}

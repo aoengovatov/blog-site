@@ -25,12 +25,9 @@ const UserRowContainer = ({
 
     const onRoleSave = (userId, newUserRoleId) => {
         requestServer("updateUserRole", userId, newUserRoleId).then(() => {
-            console.log("сохранить роль");
             setInitialRoleId(newUserRoleId);
         });
     };
-
-    console.log(roles);
 
     const isSaveButtonDisabled = selectedRoleId === initialRoleId;
 
