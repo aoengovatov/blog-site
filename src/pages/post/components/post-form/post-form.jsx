@@ -22,7 +22,7 @@ const PostFormContainer = ({
     useLayoutEffect(() => {
         setImageUrlValue(imageUrl);
         setTitleValue(title);
-    }, [titleValue, imageUrlValue]);
+    }, [title, imageUrl]);
 
     const onSave = () => {
         const newContent = sanitizeContent(contentRef.current.innerHTML);
