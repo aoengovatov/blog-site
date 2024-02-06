@@ -40,6 +40,12 @@ export const PostCard = styled(PostCardContainer)`
     margin: 20px;
     border-radius: 5px;
     overflow: hidden;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+
+    &:hover {
+        border-color: #dddddd;
+    }
 
     & .post-title {
         font-size: 17px;

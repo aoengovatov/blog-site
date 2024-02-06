@@ -1,6 +1,6 @@
 import { useServerRequest } from "../../hooks";
 import { useState, useEffect } from "react";
-import { PostCard, Pagination } from "./components";
+import { PostCard, Pagination, Search } from "./components";
 import { PAGINATION_LIMIT } from "../../constants";
 import styled from "styled-components";
 
@@ -23,6 +23,7 @@ const MainContainer = ({ className }) => {
 
     return (
         <div className={className}>
+            <Search />
             <div className="card-list">
                 {posts.map(({ id, title, imageUrl, publushedAt, commentsCount }) => (
                     <PostCard
