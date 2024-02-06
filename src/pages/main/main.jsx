@@ -33,7 +33,7 @@ const MainContainer = ({ className }) => {
                     />
                 ))}
             </div>
-            <Pagination setPage={setPage} />
+            <Pagination page={page} setPage={setPage} />
         </div>
     );
 };

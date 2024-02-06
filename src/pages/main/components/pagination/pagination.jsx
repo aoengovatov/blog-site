@@ -5,33 +5,35 @@ const PaginationContainer = ({ className, page, setPage }) => {
     return (
         <div className={className}>
             <Button
+                disabled={page === 1}
                 onClick={() => {
                     setPage(1);
                 }}
             >
-                В начало
+                в начало
             </Button>
             <Button
+                disabled={page === 1}
                 onClick={() => {
                     setPage(page - 1);
                 }}
             >
-                Предыдущая
+                пред.
             </Button>
-            <div className="current-page">Страница: {page}</div>
+            <div className="current-page">стр: {page}</div>
             <Button
                 onClick={() => {
                     setPage(page + 1);
                 }}
             >
-                Следующая
+                след.
             </Button>
             <Button
                 onClick={() => {
                     setPage(1);
                 }}
             >
-                В конец
+                в конец
             </Button>
         </div>
     );
@@ -41,16 +43,22 @@ export const Pagination = styled(PaginationContainer)`
     display: flex;
     justify-content: center;
     margin: 10px 0;
-    padding: 35px;
 
     & button {
         margin: 5px;
+        width: 100px;
     }
 
     & .current-page {
-        border: 1px solid #000;
-        width: 100%;
-        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #dbdbdb;
+        height: 30px;
         text-align: center;
+        font-size: 14px;
+        padding: 7px 13px;
+        border-radius: 3px;
+        margin: 5px;
     }
 `;

@@ -15,7 +15,7 @@ const PostCardContainer = ({
             <Link to={`/post/${id}`}>
                 <img className="post-content-image" src={imageUrl} alt={title}></img>
                 <div className="post-card-footer">
-                    <h3>{title}</h3>
+                    <h3 className="post-title">{title}</h3>
                     <div className="post-card-info">
                         <div className="date-block">
                             <Icon id="fa-calendar-o" margin="0 10px 0 0" />
@@ -36,18 +36,25 @@ export const PostCard = styled(PostCardContainer)`
     display: flex;
     flex-direction: column;
     width: 280px;
-    border: 1px solid #000;
+    background-color: #ededed;
     margin-bottom: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+
+    & .post-title {
+        font-size: 17px;
+        color: #3465e3;
+    }
 
     & .post-card-footer {
-        padding: 8px;
+        padding: 10px;
         padding-top: 0;
     }
 
     & .post-content-image {
         width: 100%;
         height: 180px;
-        margin-bottom: 8px;
+        margin-bottom: 3px;
     }
 
     & .date-block {

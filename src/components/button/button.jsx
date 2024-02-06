@@ -16,10 +16,15 @@ export const Button = styled(ButtonContainer)`
     color: #f1e7e7;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
+    cursor: ${({ disabled }) => (disabled ? "default" : "pointer")};
     transition: all 0.2s;
 
     &:hover {
         background: #1d4fcd;
+    }
+
+    &[disabled] {
+        background-color: #cccccc;
+        color: #666666;
     }
 `;
