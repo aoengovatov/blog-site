@@ -1,18 +1,28 @@
+import { Input, Icon } from "../../../../components";
 import styled from "styled-components";
 
 const SearchContainer = ({ className }) => {
     return (
         <div className={className}>
-            <div className="serach-container">Поиск</div>
+            <Input />
+            <Icon id="fa-search" margin="0 0 0 10px" size="20px" />
         </div>
     );
 };
 
 export const Search = styled(SearchContainer)`
-    width: 100%;
     display: flex;
+    margin: 25px auto 0;
+    width: 340px;
+    height: 40px;
+    position: relative;
 
-    & .serach-container {
-        margin: 10px auto;
+    & > div {
+        position: absolute;
+        right: 9px;
+    }
+
+    & > input {
+        padding: 5px 30px 5px 8px;
     }
 `;
