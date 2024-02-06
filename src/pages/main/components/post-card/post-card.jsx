@@ -53,7 +53,7 @@ export const PostCard = styled(PostCardContainer)`
 
     & .post-content-image {
         width: 100%;
-        height: 180px;
+        height: 160px;
         margin-bottom: 3px;
     }
 

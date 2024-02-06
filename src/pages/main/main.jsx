@@ -7,6 +7,7 @@ import styled from "styled-components";
 const MainContainer = ({ className }) => {
     const [posts, setPosts] = useState([]);
     const [page, setPage] = useState(1);
+    const [lastPage, setLastPage] = useState(1);
 
     const requestServer = useServerRequest();
 
@@ -15,8 +16,8 @@ const MainContainer = ({ className }) => {
             if (posts.error) {
                 return;
             }
-            setPosts(posts.res);
-            console.log(page, PAGINATION_LIMIT, posts.res);
+            setPosts(posts.res.postData);
+            setLastPage(posts.res.lastPage);
         });
     }, [requestServer, page]);
 
@@ -34,7 +35,9 @@ const MainContainer = ({ className }) => {
                     />
                 ))}
             </div>
-            <Pagination page={page} setPage={setPage} />
+            {lastPage > 1 && (
+                <Pagination page={page} lastPage={lastPage} setPage={setPage} />
+            )}
         </div>
     );
 };

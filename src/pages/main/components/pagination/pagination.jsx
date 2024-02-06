@@ -1,7 +1,7 @@
 import { Button } from "../../../../components";
 import styled from "styled-components";
 
-const PaginationContainer = ({ className, page, setPage }) => {
+const PaginationContainer = ({ className, page, lastPage, setPage }) => {
     return (
         <div className={className}>
             <Button
@@ -22,6 +22,7 @@ const PaginationContainer = ({ className, page, setPage }) => {
             </Button>
             <div className="current-page">стр: {page}</div>
             <Button
+                disabled={page === lastPage}
                 onClick={() => {
                     setPage(page + 1);
                 }}
@@ -29,8 +30,9 @@ const PaginationContainer = ({ className, page, setPage }) => {
                 след.
             </Button>
             <Button
+                disabled={page === lastPage}
                 onClick={() => {
-                    setPage(1);
+                    setPage(lastPage);
                 }}
             >
                 в конец
