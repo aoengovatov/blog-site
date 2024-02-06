@@ -16,6 +16,7 @@ const MainContainer = ({ className }) => {
                 return;
             }
             setPosts(posts.res);
+            console.log(page, PAGINATION_LIMIT, posts.res);
         });
     }, [requestServer, page]);
 
@@ -39,10 +40,10 @@ const MainContainer = ({ className }) => {
 };
 
 export const Main = styled(MainContainer)`
-    margin: 30px 20px;
+    margin: 20px 0;
+
     & .card-list {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
     }
 `;
