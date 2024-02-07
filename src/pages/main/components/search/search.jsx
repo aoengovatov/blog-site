@@ -1,10 +1,14 @@
 import { Input, Icon } from "../../../../components";
 import styled from "styled-components";
 
-const SearchContainer = ({ className }) => {
+const SearchContainer = ({ className, searchPhrase, onChange }) => {
     return (
         <div className={className}>
-            <Input />
+            <Input
+                value={searchPhrase}
+                onChange={onChange}
+                placeholder="поиск по заголовкам..."
+            />
             <Icon id="fa-search" margin="0 0 0 10px" size="20px" />
         </div>
     );
