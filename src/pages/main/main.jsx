@@ -63,4 +63,10 @@ export const Main = styled(MainContainer)`
         display: flex;
         flex-wrap: wrap;
     }
+
+    & .not-found-posts {
+        font-size: 18px;
+        text-align: center;
+        margin-top: 20px;
+    }
 `;
