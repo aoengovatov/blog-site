@@ -1,8 +1,8 @@
 import { useServerRequest } from "../../hooks";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { PostCard, Pagination, Search } from "./components";
 import { PAGINATION_LIMIT } from "../../constants";
-import { debounce } from "./utils";
+import { debounce, getLastPageFromLinks } from "./utils";
 import styled from "styled-components";
 
 const MainContainer = ({ className }) => {
@@ -16,17 +16,14 @@ const MainContainer = ({ className }) => {
 
     useEffect(() => {
         requestServer("fetchPosts", searchPhrase, page, PAGINATION_LIMIT).then(
-            (posts) => {
-                if (posts.error) {
-                    return;
-                }
-                setPosts(posts.res.postData);
-                setLastPage(posts.res.lastPage);
+            ({ res: { postData, links } }) => {
+                setPosts(postData);
+                setLastPage(getLastPageFromLinks(links));
             }
         );
     }, [requestServer, page, shouldSearch]);
 
-    const startDelayedSearch = debounce(setShouldSearch, 2000);
+    const startDelayedSearch = useMemo(() => debounce(setShouldSearch, 2000), []);
 
     const onSearch = ({ target }) => {
         setSearchPhrase(target.value);
@@ -36,18 +33,22 @@ const MainContainer = ({ className }) => {
     return (
         <div className={className}>
             <Search searchPhrase={searchPhrase} onChange={onSearch} />
-            <div className="card-list">
-                {posts.map(({ id, title, imageUrl, publushedAt, commentsCount }) => (
-                    <PostCard
-                        key={id}
-                        id={id}
-                        title={title}
-                        imageUrl={imageUrl}
-                        publushedAt={publushedAt}
-                        commentsCount={commentsCount}
-                    />
-                ))}
-            </div>
+            {posts.length ? (
+                <div className="card-list">
+                    {posts.map(({ id, title, imageUrl, publushedAt, commentsCount }) => (
+                        <PostCard
+                            key={id}
+                            id={id}
+                            title={title}
+                            imageUrl={imageUrl}
+                            publushedAt={publushedAt}
+                            commentsCount={commentsCount}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <div className="not-found-posts">Статьи не найдены</div>
+            )}
             {lastPage > 1 && (
                 <Pagination page={page} lastPage={lastPage} setPage={setPage} />
             )}
