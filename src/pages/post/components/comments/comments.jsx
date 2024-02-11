@@ -16,7 +16,7 @@ const CommentsContainer = ({ className, comments, postId }) => {
     const dispatch = useDispatch();
     const serverRequest = useServerRequest();
 
-    const onNewCommentAdd = (userid, postId, content) => {
+    const onNewCommentAdd = (userId, postId, content) => {
         if (content !== "") {
             dispatch(addCommentAsync(serverRequest, userId, postId, content));
         }
@@ -36,13 +36,13 @@ const CommentsContainer = ({ className, comments, postId }) => {
                         placeholder="комментарий..."
                         onChange={({ target }) => setNewComment(target.value)}
                     ></textarea>
-                    <div
-                        onClick={() => {
-                            onNewCommentAdd(userId, postId, newComment);
-                        }}
-                    >
-                        <Icon id="fa-paper-plane-o" margin="0 0 0 10px" size="20px" />
-                    </div>
+
+                    <Icon
+                        onClick={() => onNewCommentAdd(userId, postId, newComment)}
+                        id="fa-paper-plane-o"
+                        margin="0 0 0 10px"
+                        size="20px"
+                    />
                 </div>
             )}
 
