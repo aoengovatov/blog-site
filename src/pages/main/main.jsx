@@ -32,24 +32,29 @@ const MainContainer = ({ className }) => {
 
     return (
         <div className={className}>
-            <Search searchPhrase={searchPhrase} onChange={onSearch} />
-            {posts.length ? (
-                <div className="card-list">
-                    {posts.map(({ id, title, imageUrl, publushedAt, commentsCount }) => (
-                        <PostCard
-                            key={id}
-                            id={id}
-                            title={title}
-                            imageUrl={imageUrl}
-                            publushedAt={publushedAt}
-                            commentsCount={commentsCount}
-                        />
-                    ))}
-                </div>
-            ) : (
-                <div className="not-found-posts">Статьи не найдены</div>
-            )}
-            {lastPage > 1 && (
+            <div className="posts-and-search">
+                <Search searchPhrase={searchPhrase} onChange={onSearch} />
+                {posts.length > 0 ? (
+                    <div className="card-list">
+                        {posts.map(
+                            ({ id, title, imageUrl, publushedAt, commentsCount }) => (
+                                <PostCard
+                                    key={id}
+                                    id={id}
+                                    title={title}
+                                    imageUrl={imageUrl}
+                                    publushedAt={publushedAt}
+                                    commentsCount={commentsCount}
+                                />
+                            )
+                        )}
+                    </div>
+                ) : (
+                    <div className="not-found-posts">Статьи не найдены</div>
+                )}
+            </div>
+
+            {lastPage > 1 && posts.length > 0 && (
                 <Pagination page={page} lastPage={lastPage} setPage={setPage} />
             )}
         </div>

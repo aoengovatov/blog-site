@@ -9,6 +9,7 @@ import styled from "styled-components";
 const AppColumn = styled.div`
     display: flex;
     flex-direction: column;
+    position: relative;
     justify-content: space-between;
     width: 1000px;
     min-height: 100%;
@@ -17,8 +18,9 @@ const AppColumn = styled.div`
 `;
 
 const Page = styled.div`
-    padding: 120px 0;
+    padding: 120px 0 60px;
     margin: 0 20px;
+    height: 100%;
 `;
 
 export const Blog = () => {
