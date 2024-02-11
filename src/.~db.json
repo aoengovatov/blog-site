@@ -115,17 +115,6 @@
         "registedAt": "2050-09-22",
         "roleId": 0
       }
-    },
-    {
-      "hash": "30690684840394610866098901169607415795326232910156",
-      "user": {
-        "id": "1",
-        "login": "anton",
-        "password": "qwery123",
-        "registedAt": "2050-09-22",
-        "roleId": 0
-      },
-      "id": "tqr2_GP"
     }
   ]
 }

@@ -1,13 +1,17 @@
 import { Icon } from "../../../../../../components";
 import { removeCommentAsync } from "../../../../../../actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useServerRequest } from "../../../../../../hooks";
 import { openModal, CLOSE_MODAL } from "../../../../../../actions";
+import { selectUserRole } from "../../../../../../selectors";
+import { ROLE } from "../../../../../../constants";
+import { checkAccess } from "../../../../../../utils";
 import styled from "styled-components";
 
 const CommentContainer = ({ className, id, postId, author, content, publishedAt }) => {
     const dispatch = useDispatch();
     const requestServer = useServerRequest();
+    const userRole = useSelector(selectUserRole);
 
     const onDeleteComment = (id) => {
         dispatch(
@@ -21,6 +25,8 @@ const CommentContainer = ({ className, id, postId, author, content, publishedAt 
             })
         );
     };
+
+    const isAdmin = checkAccess([ROLE.ADMIN], userRole);
 
     return (
         <div className={className}>
@@ -37,13 +43,14 @@ const CommentContainer = ({ className, id, postId, author, content, publishedAt 
                 </div>
                 <div className="content-comment">{content}</div>
             </div>
-            <div
-                onClick={() => {
-                    onDeleteComment(id);
-                }}
-            >
-                <Icon id="fa-trash-o" margin="0 0 0 10px" size="22px" />
-            </div>
+            {isAdmin && (
+                <Icon
+                    onClick={() => onDeleteComment(id)}
+                    id="fa-trash-o"
+                    margin="0 0 0 10px"
+                    size="22px"
+                />
+            )}
         </div>
     );
 };

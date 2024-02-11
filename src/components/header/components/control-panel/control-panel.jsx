@@ -8,6 +8,7 @@ import {
 import { Icon, Button } from "../../../../components";
 import { ROLE } from "../../../../constants";
 import { logout } from "../../../../actions";
+import { checkAccess } from "../../../../utils";
 import styled from "styled-components";
 
 const RightAlignedIcons = styled.div`
@@ -43,6 +44,8 @@ const ControlPanelContainer = ({ className }) => {
         sessionStorage.removeItem("userData");
     };
 
+    const isAdmin = checkAccess([ROLE.ADMIN], roleId);
+
     return (
         <div className={className}>
             <RightAlignedLogin>
@@ -61,16 +64,20 @@ const ControlPanelContainer = ({ className }) => {
             </RightAlignedLogin>
             <RightAlignedIcons>
                 <Icon id="fa-backward" onClick={() => navigate(-1)} margin="0 0 0 0" />
-                <Icon
-                    id="fa-file-text-o"
-                    onClick={() => navigate("/post")}
-                    margin="0 0 0 15px"
-                />
-                <Icon
-                    id="fa-users"
-                    onClick={() => navigate("/users")}
-                    margin="0 0 0 15px"
-                />
+                {isAdmin && (
+                    <>
+                        <Icon
+                            id="fa-file-text-o"
+                            onClick={() => navigate("/post")}
+                            margin="0 0 0 15px"
+                        />
+                        <Icon
+                            id="fa-users"
+                            onClick={() => navigate("/users")}
+                            margin="0 0 0 15px"
+                        />
+                    </>
+                )}
             </RightAlignedIcons>
         </div>
     );
