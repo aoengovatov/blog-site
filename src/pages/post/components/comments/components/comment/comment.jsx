@@ -26,7 +26,7 @@ const CommentContainer = ({ className, id, postId, author, content, publishedAt 
         );
     };
 
-    const isAdmin = checkAccess([ROLE.ADMIN], userRole);
+    const isAdminOrModerator = checkAccess([ROLE.ADMIN, ROLE.MODERATOR], userRole);
 
     return (
         <div className={className}>
@@ -43,7 +43,7 @@ const CommentContainer = ({ className, id, postId, author, content, publishedAt 
                 </div>
                 <div className="content-comment">{content}</div>
             </div>
-            {isAdmin && (
+            {isAdminOrModerator && (
                 <Icon
                     onClick={() => onDeleteComment(id)}
                     id="fa-trash-o"
