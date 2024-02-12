@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Icon } from "../../../../../../components";
 import { removeCommentAsync } from "../../../../../../actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -85,3 +86,11 @@ export const Comment = styled(CommentContainer)`
         margin-bottom: 5px;
     }
 `;
+
+Comment.PropTypes = {
+    id: PropTypes.string.isRequired,
+    postId: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    publishedAt: PropTypes.string.isRequired,
+};

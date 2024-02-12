@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { openModal, CLOSE_MODAL, removePostAsync } from "../../../../actions";
@@ -67,3 +68,9 @@ export const PostPanel = styled(PostPanelContainer)`
         align-items: center;
     }
 `;
+
+PostPanel.PropTypes = {
+    id: PropTypes.string.isRequired,
+    publushedAt: PropTypes.string.isRequired,
+    editButton: PropTypes.func.isRequired,
+};

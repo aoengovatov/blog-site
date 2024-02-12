@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Icon } from "../../../../components";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -78,3 +79,11 @@ export const PostCard = styled(PostCardContainer)`
         justify-content: space-between;
     }
 `;
+
+PostCard.PropTypes = {
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    publushedAt: PropTypes.string.isRequired,
+    commentsCount: PropTypes.number.isRequired,
+};

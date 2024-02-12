@@ -2,6 +2,7 @@ import { PostPanel } from "../post-panel/post-panel";
 import { useNavigate } from "react-router-dom";
 import { H2, Icon } from "../../../../components";
 import styled from "styled-components";
+import { PROP_TYPE } from "../../../../constants";
 
 const PostContentContainer = ({
     className,
@@ -51,3 +52,7 @@ export const PostContent = styled(PostContentContainer)`
         white-space: pre-line;
     }
 `;
+
+PostContent.PropTypes = {
+    post: PROP_TYPE.POST.isRequired,
+};

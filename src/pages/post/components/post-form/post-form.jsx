@@ -7,6 +7,7 @@ import { Input, Icon } from "../../../../components";
 import { PostPanel } from "../post-panel/post-panel";
 import { sanitizeContent } from "./utils";
 import styled from "styled-components";
+import { PROP_TYPE } from "../../../../constants";
 
 const PostFormContainer = ({
     className,
@@ -94,3 +95,7 @@ export const PostForm = styled(PostFormContainer)`
         border-color: #3465e3;
     }
 `;
+
+PostForm.PropTypes = {
+    post: PROP_TYPE.POST.isRequired,
+};
