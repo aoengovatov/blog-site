@@ -30,7 +30,7 @@ export const Button = styled(ButtonContainer)`
     }
 `;
 
-Button.PropTypes = {
+Button.propTypes = {
     children: PropTypes.node.isRequired,
     width: PropTypes.string,
 };

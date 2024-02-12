@@ -96,6 +96,6 @@ export const PostForm = styled(PostFormContainer)`
     }
 `;
 
-PostForm.PropTypes = {
+PostForm.propTypes = {
     post: PROP_TYPE.POST.isRequired,
 };

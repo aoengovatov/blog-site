@@ -53,6 +53,6 @@ export const PostContent = styled(PostContentContainer)`
     }
 `;
 
-PostContent.PropTypes = {
+PostContent.propTypes = {
     post: PROP_TYPE.POST.isRequired,
 };

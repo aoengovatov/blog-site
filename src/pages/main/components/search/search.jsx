@@ -32,7 +32,7 @@ export const Search = styled(SearchContainer)`
     }
 `;
 
-Search.PropTypes = {
+Search.propTypes = {
     searchPhrase: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
 };

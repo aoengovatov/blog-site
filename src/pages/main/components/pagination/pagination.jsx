@@ -69,7 +69,7 @@ export const Pagination = styled(PaginationContainer)`
     }
 `;
 
-Pagination.PropTypes = {
+Pagination.propTypes = {
     page: PropTypes.number.isRequired,
     lastPage: PropTypes.number.isRequired,
     setPage: PropTypes.func.isRequired,

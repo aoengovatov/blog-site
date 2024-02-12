@@ -87,8 +87,8 @@ export const Comment = styled(CommentContainer)`
     }
 `;
 
-Comment.PropTypes = {
-    id: PropTypes.string.isRequired,
+Comment.propTypes = {
+    id: PropTypes.number.isRequired,
     postId: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,

@@ -80,7 +80,7 @@ export const PostCard = styled(PostCardContainer)`
     }
 `;
 
-PostCard.PropTypes = {
+PostCard.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,

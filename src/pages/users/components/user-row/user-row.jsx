@@ -71,11 +71,11 @@ export const UserRow = styled(UserRowContainer)`
     align-items: center;
 `;
 
-UserRow.PropTypes = {
+UserRow.propTypes = {
     id: PropTypes.string.isRequired,
     login: PropTypes.string.isRequired,
     registedAt: PropTypes.string.isRequired,
-    roleId: PROP_TYPE.ROLE.isRequired,
+    roleId: PROP_TYPE.ROLE_ID.isRequired,
     roles: PropTypes.arrayOf(PROP_TYPE.ROLE.isRequired).isRequired,
-    onUserRemove: PropTypes.string.isRequired,
+    onUserRemove: PropTypes.func.isRequired,
 };

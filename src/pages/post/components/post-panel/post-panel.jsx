@@ -69,8 +69,8 @@ export const PostPanel = styled(PostPanelContainer)`
     }
 `;
 
-PostPanel.PropTypes = {
+PostPanel.propTypes = {
     id: PropTypes.string.isRequired,
     publushedAt: PropTypes.string.isRequired,
-    editButton: PropTypes.func.isRequired,
+    editButton: PropTypes.node.isRequired,
 };

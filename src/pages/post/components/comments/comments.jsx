@@ -83,7 +83,7 @@ export const Comments = styled(CommentsContainer)`
     }
 `;
 
-Comments.PropTypes = {
+Comments.propTypes = {
     comments: PropTypes.arrayOf(PROP_TYPE.COMMENT),
     postId: PropTypes.string.isRequired,
 };

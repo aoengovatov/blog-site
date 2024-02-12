@@ -23,6 +23,6 @@ export const Input = styled(InputContainer)`
     }
 `;
 
-Input.PropTypes = {
+Input.propTypes = {
     width: PropTypes.string,
 };

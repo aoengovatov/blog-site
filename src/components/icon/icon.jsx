@@ -14,7 +14,7 @@ export const Icon = styled(IconContainer)`
     cursor: ${({ onClick }) => (onClick ? "pointer" : "default")};
 `;
 
-Icon.PropTypes = {
+Icon.propTypes = {
     id: PropTypes.string.isRequired,
     onClick: PropTypes.func,
 };

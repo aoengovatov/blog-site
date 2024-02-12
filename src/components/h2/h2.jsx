@@ -13,6 +13,6 @@ export const H2 = styled(H2Container)`
     font-weight: 600;
 `;
 
-H2.PropTypes = {
+H2.propTypes = {
     children: PropTypes.node.isRequired,
 };

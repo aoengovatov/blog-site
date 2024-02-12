@@ -35,6 +35,6 @@ export const TableRow = styled(TableRowContainer)`
     }
 `;
 
-TableRow.PropTypes = {
+TableRow.propTypes = {
     children: PropTypes.node.isRequired,
 };
