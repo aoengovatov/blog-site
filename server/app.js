@@ -1,10 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const { register } = require("./controllers/user");
+const { register, loginUser } = require("./controllers/user");
 const mapUser = require("./mappers/mapUser");
+const config = require("config");
 
-const port = 3001;
+const port = config.get("port");
+const mongoUri = config.get("mongoUri");
 const app = express();
 
 app.use(cookieParser());
@@ -21,12 +23,27 @@ app.post("/register", async (req, res) => {
     }
 });
 
-mongoose
-    .connect(
-        'mongodb+srv://aoengovatov:<password>@cluster0.ndz6eui.mongodb.net/blog-site?retryWrites=true&w=majority&appName=Cluster0"'
-    )
-    .then(() => {
-        app.listen(port, () => {
-            console.log(`Server start on port ${port}`);
+app.post("/login", async (req, res) => {
+    const { login, password } = req.body;
+
+    try {
+        const { user, token } = await loginUser(login, password);
+
+        res.cookie("token", token, { httpOnly: true }).send({
+            error: null,
+            user: mapUser(user),
         });
+    } catch (e) {
+        res.send({ error: e.message || "Unknown error" });
+    }
+});
+
+app.post("/logout", (req, res) => {
+    res.cookie("token", "", { httpOnly: true }).send({});
+});
+
+mongoose.connect(mongoUri).then(() => {
+    app.listen(port, () => {
+        console.log(`Server start on port ${port}`);
     });
+});
