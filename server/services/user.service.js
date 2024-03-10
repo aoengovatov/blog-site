@@ -3,7 +3,7 @@ const User = require("../models/User");
 const { generate } = require("../utils/token");
 const ROLES = require("../constants/roles");
 
-const register = async (login, password) => {
+exports.register = async (login, password) => {
     if (!password) {
         throw new Error("Password is empty");
     }
@@ -16,7 +16,7 @@ const register = async (login, password) => {
     return { user, token };
 };
 
-const loginUser = async (login, password) => {
+exports.login = async (login, password) => {
     const user = await User.findOne({ login });
 
     if (!user) {
@@ -34,11 +34,11 @@ const loginUser = async (login, password) => {
     return { token, user };
 };
 
-const getUsers = () => {
+exports.getUsers = () => {
     return User.find();
 };
 
-const getRoles = () => {
+exports.getRoles = () => {
     return [
         { id: ROLES.ADMIN, name: "Admin" },
         { id: ROLES.MODERATOR, name: "Moderator" },
@@ -46,19 +46,10 @@ const getRoles = () => {
     ];
 };
 
-const deleteUser = (id) => {
+exports.deleteUser = (id) => {
     return User.deleteOne({ _id: id });
 };
 
-const updateUser = (id, userData) => {
+exports.updateUser = (id, userData) => {
     return User.findByIdAndUpdate(id, userData, { returnDocument: "after" });
-};
-
-module.exports = {
-    register,
-    loginUser,
-    getUsers,
-    getRoles,
-    deleteUser,
-    updateUser,
 };
