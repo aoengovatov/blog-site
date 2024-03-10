@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const config = require("config");
-const sign = config.get("sign_jwt");
+const sign = config.get("jwt_sign");
 
 module.exports = {
     generate(data) {
