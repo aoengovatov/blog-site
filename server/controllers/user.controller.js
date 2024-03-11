@@ -1,8 +1,9 @@
 const userService = require("../services/user.service");
-const mapUser = require("./mappers/mapUser");
+const mapUser = require("../mappers/mapUser");
 
-exports.register = (login, password) => async (req, res) => {
+exports.register = async (req, res) => {
     const { login, password } = req.body;
+    console.log(req.body);
 
     try {
         const { user, token } = await userService.register(login, password);
@@ -16,7 +17,7 @@ exports.register = (login, password) => async (req, res) => {
     }
 };
 
-exports.login = async (login, password) => async (req, res) => {
+exports.login = async (req, res) => {
     const { login, password } = req.body;
 
     try {

@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const userRoute = require("./routes/user.routes");
+const userRouter = require("./routes/user.routes");
 const userForAdminRoute = require("./routes/user-for-admin.routes");
 const authentificated = require("./middlewares/authentificated");
 const hasRole = require("./middlewares/hasRole");
@@ -11,12 +11,13 @@ const ROLES = require("./constants/roles");
 
 const port = config.get("port");
 const mongoUri = config.get("mongoUri");
+
 const app = express();
 
 app.use(cookieParser());
 app.use(express.json());
 
-app.use("/", userRoute);
+app.use("/", userRouter);
 
 app.use(authentificated);
 
