@@ -25,7 +25,7 @@ app.use("posts/", postRoute);
 app.use(authentificated);
 
 app.use("/users", hasRole([ROLES.ADMIN]), userForAdminRoute);
-app.use("posts/", hasRole([ROLES.ADMIN]), postForAdminRoute);
+app.use("/posts", hasRole([ROLES.ADMIN]), postForAdminRoute);
 
 mongoose.connect(mongoUri).then(() => {
     app.listen(port, () => {
