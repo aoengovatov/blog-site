@@ -1,11 +1,23 @@
 const Post = require("../models/Post");
 
-exports.addPost = (post) => {
-    return Post.create(post);
+exports.addPost = async (post) => {
+    const newPost = await Post.create(post)
+    
+    newPost.populate({
+        path: "comments",
+        populate: "author",
+    });
+
+    return newPost;
 };
 
 exports.editPost = async (id, post) => {
     const newPost = await Post.findByIdAndUpdate(id, post, { returnDocument: "after" });
+
+    await newPost.populate({
+        path: "comments",
+        populate: "author",
+    });
 
     return newPost;
 };
@@ -27,5 +39,5 @@ exports.getPosts = async (search = "", limit = 10, page = 1) => {
 };
 
 exports.getPost = (id) => {
-    return Post.findById(id);
+    return Post.findById(id).populate({ path: "comments", populate: "author" });
 };
