@@ -2,7 +2,7 @@ const postService = require("../services/post.service");
 const mapPost = require("../mappers/mapPost");
 
 exports.addPost = async (req, res) => {
-    const { title, content, image: imageUrl } = req.body;
+    const { title, content, imageUrl: image } = req.body;
 
     const newPost = await postService.addPost({
         title,
@@ -14,7 +14,7 @@ exports.addPost = async (req, res) => {
 };
 
 exports.editPost = async (req, res) => {
-    const { title, content, image: imageUrl } = req.body;
+    const { title, content, imageUrl: image } = req.body;
 
     const updatedPost = await postService.editPost(req.params.id, {
         title,

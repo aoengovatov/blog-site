@@ -20,12 +20,12 @@ exports.getPosts = async (search = "", limit = 10, page = 1) => {
             .limit(limit)
             .skip((page - 1) * limit)
             .sort({ createdAt: -1 }),
-        Post.countDocument({ title: { $regex: search, $options: "i" } }),
+        Post.countDocuments({ title: { $regex: search, $options: "i" } }),
     ]);
 
     return { posts, lastPage: Math.ceil(count / limit) };
 };
 
 exports.getPost = (id) => {
-    return Post.findOne(id);
+    return Post.findById(id);
 };

@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use("/", userRoute);
-app.use("posts/", postRoute);
+app.use("/posts", postRoute);
 
 app.use(authentificated);
 
