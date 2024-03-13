@@ -4,4 +4,4 @@ const commentController = require("../controllers/comment.controller");
 
 commentRouter.post("/:id/comments", commentController.addComment);
 
-module.exports = postRouter;
+module.exports = commentRouter;

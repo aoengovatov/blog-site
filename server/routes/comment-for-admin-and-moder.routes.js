@@ -4,4 +4,4 @@ const commentController = require("../controllers/comment-for-admin-and-moder.co
 
 commentRouter.delete("/:postId/comments/:commentId", commentController.deleteComment);
 
-module.exports = postRouter;
+module.exports = commentRouter;
