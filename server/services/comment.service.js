@@ -12,6 +12,6 @@ exports.addComment = async (postId, comment) => {
 };
 
 exports.deleteComment = async (postId, commentId) => {
-    await Comment.delete(commentId);
+    await Comment.deleteOne({ _id: commentId });
     await Post.findByIdAndUpdate(postId, { $pull: { comments: commentId } });
 };

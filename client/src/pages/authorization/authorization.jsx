@@ -7,10 +7,10 @@ import { setUser } from "../../actions";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, Navigate } from "react-router-dom";
-import { server } from "../../bff";
 import { useState } from "react";
 import { Input, Button, H2, AuthFormError } from "../../components";
 import styled from "styled-components";
+import { request } from "../../utils";
 
 const authFormShema = yup.object().shape({
     login: yup
@@ -53,13 +53,13 @@ const AuthorizationContainer = ({ className }) => {
     useResetForm(reset);
 
     const onSubmit = ({ login, password }) => {
-        server.authorize(login, password).then(({ error, res }) => {
+        request("/login", "POST", { login, password }).then(({ error, user }) => {
             if (error) {
                 setServerError(`Ошибка запроса: ${error}`);
                 return;
             }
-            dispatch(setUser(res));
-            sessionStorage.setItem("userData", JSON.stringify(res));
+            dispatch(setUser(user));
+            sessionStorage.setItem("userData", JSON.stringify(user));
         });
     };
 
