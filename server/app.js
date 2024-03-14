@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const userRoute = require("./routes/user.routes");
 const postRoute = require("./routes/post.routes");
@@ -17,6 +18,12 @@ const port = config.get("port");
 const mongoUri = config.get("mongoUri");
 
 const app = express();
+
+app.use(
+    cors({
+        origin: "*",
+    })
+);
 
 app.use(cookieParser());
 app.use(express.json());
