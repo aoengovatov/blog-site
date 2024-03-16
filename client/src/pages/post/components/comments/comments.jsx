@@ -3,23 +3,20 @@ import { Icon } from "../../../../components";
 import { useState } from "react";
 import { Comment } from "./components";
 import { useDispatch, useSelector } from "react-redux";
-import { useServerRequest } from "../../../../hooks";
 import { addCommentAsync } from "../../../../actions";
-import { selectUserId, selectUserRole } from "../../../../selectors";
+import { selectUserRole } from "../../../../selectors";
 import styled from "styled-components";
 import { checkAccess } from "../../../../utils";
 import { PROP_TYPE, ROLE } from "../../../../constants";
 
 const CommentsContainer = ({ className, comments, postId }) => {
     const [newComment, setNewComment] = useState("");
-    const userId = useSelector(selectUserId);
     const userRole = useSelector(selectUserRole);
     const dispatch = useDispatch();
-    const serverRequest = useServerRequest();
 
-    const onNewCommentAdd = (userId, postId, content) => {
+    const onNewCommentAdd = (postId, content) => {
         if (content !== "") {
-            dispatch(addCommentAsync(serverRequest, userId, postId, content));
+            dispatch(addCommentAsync(postId, content));
         }
         setNewComment("");
     };
@@ -39,7 +36,7 @@ const CommentsContainer = ({ className, comments, postId }) => {
                     ></textarea>
 
                     <Icon
-                        onClick={() => onNewCommentAdd(userId, postId, newComment)}
+                        onClick={() => onNewCommentAdd(postId, newComment)}
                         id="fa-paper-plane-o"
                         margin="0 0 0 10px"
                         size="20px"

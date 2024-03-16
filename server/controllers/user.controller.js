@@ -3,7 +3,6 @@ const mapUser = require("../mappers/mapUser");
 
 exports.register = async (req, res) => {
     const { login, password } = req.body;
-    console.log(req.body);
 
     try {
         const { user, token } = await userService.register(login, password);
