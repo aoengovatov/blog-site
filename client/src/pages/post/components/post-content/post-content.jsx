@@ -6,7 +6,7 @@ import { PROP_TYPE } from "../../../../constants";
 
 const PostContentContainer = ({
     className,
-    post: { id, title, imageUrl, content, publushedAt },
+    post: { id, title, imageUrl, content, publishedAt },
 }) => {
     const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const PostContentContainer = ({
             <H2>{title}</H2>
             <PostPanel
                 id={id}
-                publushedAt={publushedAt}
+                publishedAt={publishedAt}
                 editButton={
                     <Icon
                         id="fa-pencil-square-o"

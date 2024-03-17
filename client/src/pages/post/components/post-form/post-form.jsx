@@ -2,7 +2,6 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { savePostAsync } from "../../../../actions";
-import { useServerRequest } from "../../../../hooks";
 import { Input, Icon } from "../../../../components";
 import { PostPanel } from "../post-panel/post-panel";
 import { sanitizeContent } from "./utils";
@@ -17,7 +16,6 @@ const PostFormContainer = ({
     const [titleValue, setTitleValue] = useState(title);
     const contentRef = useRef(null);
     const dispatch = useDispatch();
-    const requestServer = useServerRequest();
     const navigate = useNavigate();
 
     useLayoutEffect(() => {
@@ -29,8 +27,7 @@ const PostFormContainer = ({
         const newContent = sanitizeContent(contentRef.current.innerHTML);
 
         dispatch(
-            savePostAsync(requestServer, {
-                id,
+            savePostAsync(id, {
                 imageUrl: imageUrlValue,
                 title: titleValue,
                 content: newContent,

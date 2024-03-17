@@ -11,7 +11,7 @@ export const PROP_TYPE = {
     }),
     ERROR: PropTypes.oneOfType([PropTypes.string, PropTypes.exact(null)]),
     COMMENT: PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         author: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,
         publishedAt: PropTypes.string.isRequired,
@@ -21,6 +21,6 @@ export const PROP_TYPE = {
         title: PropTypes.string.isRequired,
         imageUrl: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,
-        publushedAt: PropTypes.string.isRequired,
+        publishedAt: PropTypes.string.isRequired,
     }),
 };
