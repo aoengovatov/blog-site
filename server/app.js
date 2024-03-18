@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -11,18 +12,14 @@ const postForAdminRoute = require("./routes/post-for-admin.routes");
 const authentificated = require("./middlewares/authentificated");
 const hasRole = require("./middlewares/hasRole");
 
-const config = require("config");
 const ROLES = require("./constants/roles");
-
-const port = config.get("port");
-const mongoUri = config.get("mongoUri");
 
 const app = express();
 
 app.use(
     cors({
         credentials: true,
-        origin: "http://localhost:5173",
+        origin: process.env.ORIGIN,
     })
 );
 
@@ -39,8 +36,8 @@ app.use("/posts", hasRole([ROLES.ADMIN]), postForAdminRoute);
 app.use("/posts", commentRoute);
 app.use("/posts", hasRole([ROLES.ADMIN, ROLES.MODERATOR]), commentForAdminAndModerRoute);
 
-mongoose.connect(mongoUri).then(() => {
-    app.listen(port, () => {
+mongoose.connect(process.env.MONGO_URI).then(() => {
+    app.listen(process.env.PORT, () => {
         console.log(`Server start on port ${port}`);
     });
 });
